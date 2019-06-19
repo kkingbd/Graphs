@@ -1,3 +1,8 @@
+import random
+import sys
+sys.path.append('../')
+from src.graph import Graph\
+from src.grapg import Queue
 
 
 class User:
@@ -47,7 +52,14 @@ class SocialGraph:
         # !!!! IMPLEMENT ME
 
         # Add users
+        for i in range(numUsers):
+            self.addUser(f"User {i}")
 
+        friendship_pattern = []
+        for i in range(1, numUsers + 1):
+            for j in range(1, numUsers + 1):
+                if i != j and (i, j) not in friendship_pattern and (j, i) not in friendship_pattern:
+                    friendship_pattern.append((i,j))
         # Create friendships
 
     def getAllSocialPaths(self, userID):
