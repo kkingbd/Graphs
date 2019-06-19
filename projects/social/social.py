@@ -1,9 +1,30 @@
 import random
-import sys
-sys.path.append('../')
-from src.graph import Graph\
-from src.grapg import Queue
 
+class Queue:
+    def __init__(self):
+        self.storage = []
+
+    def enqueue(self, value):
+        self.storage.append(value)
+
+    def dequeue(self):
+        return self.storage.pop(0)
+
+class Stack():
+    def __init__(self):
+        self.stack = []
+
+    def push(self, value):
+        self.stack.append(value)
+
+    def pop(self):
+        if self.size() > 0:
+            return self.stack.pop()
+        else:
+            return None
+
+    def size(self):
+        return len(self.stack)
 
 class User:
     def __init__(self, name):
@@ -50,17 +71,21 @@ class SocialGraph:
         self.users = {}
         self.friendships = {}
         # !!!! IMPLEMENT ME
-
+        num_of_friendships_to_create = (numUsers * avgFriendships)   # divide by 2 b/c it makes two friendships
         # Add users
         for i in range(numUsers):
             self.addUser(f"User {i}")
-
+         # Create friendships
         friendship_pattern = []
         for i in range(1, numUsers + 1):
             for j in range(1, numUsers + 1):
                 if i != j and (i, j) not in friendship_pattern and (j, i) not in friendship_pattern:
                     friendship_pattern.append((i,j))
-        # Create friendships
+        print(friendship_pattern)
+        random.shuffle(friendship_pattern)
+        for i in range(0, num_of_friendships_to_create):
+            friendship = friendship_pattern[i]
+            self.addFriendship(friendship[0], friendship[1])
 
     def getAllSocialPaths(self, userID):
         """
@@ -73,6 +98,7 @@ class SocialGraph:
         """
         visited = {}  # Note that this is a dictionary, not a set
         # !!!! IMPLEMENT ME
+
         return visited
 
 
