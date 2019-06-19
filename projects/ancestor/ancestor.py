@@ -1,5 +1,5 @@
 def earliest_ancestor(test_ancestors, starting_vertex):
-    adjacency_list = {}
+    adjacency_list = list(test_ancestors)
     visited = set()
     stack = []
     stack.append([starting_vertex])
@@ -9,7 +9,7 @@ def earliest_ancestor(test_ancestors, starting_vertex):
         vertex = path[-1]
         if vertex not in visited:
             visited.add(vertex)
-            if vertex in adjacency_list.keys():
+            if vertex in adjacency_list:
                 for neighbor in adjacency_list[vertex]:
                     if neighbor == None:
                         pass
@@ -26,6 +26,7 @@ def earliest_ancestor(test_ancestors, starting_vertex):
         elif path[0] < correct_path[0]:
             correct_path = path
     return correct_path
+
 
 
 test_ancestors = [(1, 3), (2, 3), (3, 6), (5, 6), (5, 7), (4, 5), (4, 8), (8, 9), (11, 8), (10, 1)]
